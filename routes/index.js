@@ -9,5 +9,6 @@ router.get("/test", (req, res) => {
 });
 
 // TODO: use the imported router to handle all routes matching "/users"
+router.use("/users", userRouter)
 
 export default router;
