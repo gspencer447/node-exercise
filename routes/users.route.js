@@ -3,8 +3,7 @@ import db from "../mockdb/index.js";
 
 const router = express.Router();
 
-router.get("/:id?", (req, res)=>{
-    async (req, res, next) => {
+router.get("/:id?", async (req, res, next) => {
         try {
            const { id } = req.params;
            let data;
@@ -21,23 +20,21 @@ router.get("/:id?", (req, res)=>{
            next(error);
         }
      }
-})
+)
 
-router.post("/", (req, res)=>{
-    async (req, res, next) => {
+router.post("/", async (req, res, next) => {
         try {
            const newUser = req.body;
            let data = await db.add(newUser);
 
-           req.json(data);
+           res.json(data);
         } catch (error) {
            next(error);
         }
      }
-})
+)
 
-router.put("/:id", (req, res)=>{
-    async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
         try {
            const { id } = req.params;
            const updatedUser = req.body;
@@ -48,10 +45,9 @@ router.put("/:id", (req, res)=>{
            next(error);
         }
      }
-})
+)
 
-router.delete("/:id", (req, res)=>{
-    async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
         try {
            const { id } = req.params;
            let data = await db.remove(id)
@@ -61,6 +57,6 @@ router.delete("/:id", (req, res)=>{
            next(error);
         }
      }
-})
+)
 
 export default router;
